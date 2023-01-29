@@ -16,11 +16,13 @@
 
     <link rel="stylesheet" type="text/css" href="wherestheparty.css" />
     <script type="text/javascript" src="wherestheparty.js"></script>
+
+    <link rel="stylesheet" href="utility-styles.css" />
   </head>
-  
+
   <body>
-    <main>
-      <h1 id="h1Title">Wheres The Party?</h1>
+    <main class="flex-column">
+      <h4 id="h5Title" class="center">Wheres The Party?</h4>
       <nav>
         <ul class="navbar">
           <li class="navbar__item">Home</li>
@@ -30,44 +32,75 @@
       </nav>
 
       <aside id="userSelection">
-        <div id="genres">
-          <h1 id="genresHeading"></h1>
-          <p>Please select your Genre:</p>
-          <input type="radio" class="radio" id="rap" name="genre" value="Hip-Hop/Rap" />
-          <label for="html">Hip-Hop/Rap</label><br />
-          <input type="radio" id="rock" class="radio" name="genre" value="Rock" />
-          <label for="css">Rock</label><br />
-          <input type="radio" class="radio" id="edm" name="genre" value="Electronic" />
-          <label for="javascript">EDM</label><br />
-          <input type="radio" class="radio" id="jazz" name="genre" value="Jazz" />
-          <label for="css">Jazz</label><br />
-          <input type="radio" id="classical" class="radio" name="genre" value="Classical" />
-          <label for="javascript">Classical</label><br />
-          <input type="radio" id="pop" name="genre" class="radio" value="Pop" />
-          <label for="javascript">Pop</label><br />
-          <input type="radio" id="r&b" name="genre" class="radio" value="R&B" />
-            <label for="javascript">R&B</label><br />
-          <input type="radio" id="country" name="genre" class="radio" value="Country" />
-            <label for="javascript">Country</label><br />
-        </div>
-        <div id="location">
-          <p>What City Is Your Event?</p>
-          <input type="text" id="city" /> <br />
-          <br />
-          <button id="submitBtn" value="Submit">Search</button>
-        </div>
+        <form>
+          <div id="genres" class="row">
+            <legend class="col m3">
+              <h5 id="genresHeading">Please select your Genre:</h5>
+            </legend>
+
+            <div class="genreRadios col m9 flex-row justify-content-space-between">
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="rap" name="genre" value="Hip-Hop/Rap" />
+                <span>Hip-HopRap</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="rock" name="genre" value="Rock" />
+                <span>Rock</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="edm" name="genre" value="EDM" />
+                <span>EDM</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="jazz" name="genre" value="Jazz" />
+                <span>Jazz</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="classical" name="genre" value="Classical" />
+                <span>Classical</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="pop" name="genre" class="radio" value="Pop" />
+                <span>Pop</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="r&b" name="genre" class="radio" value="R&B" />
+                <span> RB</span>
+              </label>
+
+              <label class="genre_option">
+                <input type="radio" class="with-gap" id="country" name="genre" value="Country" />
+                <span>Country</span>
+              </label>
+            </div>
+          </div>
+          <div id="location" class="row">
+            <div class="input-container col s12 m3 pull-m9 flex-row">
+              <label><strong>What City Is Your Event?</strong></label>
+              <input type="text" id="city" class="white" /> <br />
+              <br />
+              <button id="submitBtn" value="Submit">Search</button>
+            </div>
+          </div>
+        </form>
       </aside>
 
       <div id="content">
         <section id="featureResults">
-          <h1>Trending Concerts In Your City</h1>
-          <div id="results"></div>
+          <h4 class="center">Trending Concerts In Your City</h4>
+          <div id="results" class="gap-4"></div>
         </section>
 
         <div id="googlemap"></div>
 
         <section id="trending">
-          <h1>Trending Events</h1>
+          <h5>Trending Events</h5>
           <aside id="event1"></aside>
           <aside id="event2"></aside>
           <aside id="event3"></aside>
