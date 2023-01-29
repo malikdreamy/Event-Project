@@ -1,3 +1,4 @@
+
 const loadPage = () => {
   // FETCH FOR USER IP ADDRESS AND GEOLOCATION
   let url = `https://get.geojs.io/v1/ip/geo.json`
@@ -9,17 +10,9 @@ const loadPage = () => {
     console.log(completedata.city);
     cityName = completedata.city;
     
-    txt = `<iframe id="map"
-  width="600"
-  height="450"
-  style="border:0"
-  loading="lazy"
-  allowfullscreen
-  referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyA7B-dd4m9MiuBt4KBLWkPrquZ1waqxbTU&origin=${cityName}&destination=Telemark+Norway&avoid=tolls|highways">
-</iframe>`
+    txt = ``
 document.getElementById("googlemap").innerHTML = txt;
-let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=music&size=2&city=${cityName}`
+let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=music&size=39&city=${cityName}`
   
   fetch(localEventUrl).then((data) => {
     //console.log(data);
@@ -30,14 +23,30 @@ let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1co
     //let br = document.createElement("br")
     let dataEvents = completedata._embedded.events
     dataEvents.forEach((data) => {
-      txt += ` <div class="card">
+     if (data.hasOwnProperty("priceRanges")){
+      txt += ` <div class="concert-card">
         <h1 class="title">${data.name}</h1>
-        <img src=${data.images[1].url} alt="img" class="images">
-        <p>${data.dates.start.dateTime}</p>
-        <p class="category">${data._embedded.venues[0].address.line1}</p>
-        <p class="price"></p>
+        <img src=${data.images[1].url} alt="img" class="trendingImages">
+        <div class="concert-info">
+        <p class="concert-date">${"Date: " + data.dates.start.localDate}</p>
+        <p class="concert-address">${"Address :" + data._embedded.venues[0].address.line1}</p>
+        <p class="price">${"Price Ranges: " + "$" + data.priceRanges[0].min + " - " + "$" + data.priceRanges[0].max}</p>
+        </div>
         </div>`;
+     }
       //txt += data.name + " " + data.dates.start.dateTime + " " + data._embedded.venues[0].address.line1 + data.images[0].url + " " ; 
+      let concertCard = document.querySelectorAll(".concert-card");
+
+      // concertCard.forEach((card) =>{
+      //   if(card.querySelector(".price").innerHTML.trim().length === 0){
+      //     card.style.display = "none";
+      //   } else {
+          
+      //   }
+
+      // })
+      
+
       document.getElementById("results").innerHTML = txt;
     });
   }).catch((err) => {
@@ -76,7 +85,7 @@ let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1co
 
 
   // FETCH FOR USER SEARCH
-
+document.querySelector("#trending").style.display = "none";
   let button = document.getElementById('submitBtn');
   let radioButtons = document.getElementsByName('input');
   button.addEventListener("click", () => {
@@ -88,7 +97,7 @@ let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1co
       document.getElementById("userSelection").append(userMessage)
     } else {
       let selectedGenre = document.querySelector('input[name="genre"]:checked').value;
-      let ticketMasterUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=${selectedGenre}&preferredCountry=us&genreName=${selectedGenre}k&preferredCountry=us&city=${city.value}`
+      let ticketMasterUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=${selectedGenre}&preferredCountry=us&genreName=${selectedGenre}k&preferredCountry=us&city=${city.value}&size=60`
       fetch(ticketMasterUrl).then((data) => {
         //console.log(data);
         return data.json();
@@ -98,15 +107,19 @@ let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1co
         //let br = document.createElement("br")
         let dataEvents = completedata._embedded.events
         dataEvents.forEach((data) => {
-          txt += ` <div class="card">
-         <h1 class="title">${data.name}</h1>
-       <img src=${data.images[1].url} alt="img" class="images">
-        <p>${data.dates.start.dateTime}</p>
-        <p class="category">${data._embedded.venues[0].address.line1}</p>
-          <p class="price"></p>
-        </div>`;
+          if (data.hasOwnProperty("priceRanges")){
+          txt += ` <div class="concert-card">
+          <h1 class="title">${data.name}</h1>
+          <img src=${data.images[1].url} alt="img" class="trendingImages">
+          <div class="concert-info">
+          <p class="concert-date">${data.dates.start.localDate}</p>
+          <p class="concert-address">${data._embedded.venues[0].address.line1}</p>
+          <p class="price">${"Price Ranges: " + "$" + data.priceRanges[0].min + " - " + "$" + data.priceRanges[0].max}</p>
+          </div>
+          </div>`;
+          }
           //txt += data.name + " " + data.dates.start.dateTime + " " + data._embedded.venues[0].address.line1 + data.images[0].url + " " ; 
-          document.getElementById("trending").innerHTML = txt;
+          document.getElementById("results").innerHTML = txt;
 
         });
       }).catch((err) => {
