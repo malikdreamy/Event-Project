@@ -5,52 +5,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-  <link rel="stylesheet" type="text/css" href="wherestheparty.css" />
+
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" type="text/css" href="wherestheparty.css" />
   <script type="text/javascript" src="wherestheparty.js"></script>
 </head>
 <body>
     <main>
   <h1 id="h1Title">Wheres The Party?</h1>
-  <div id="userMessage"></div>
+  <nav>
+    <ul class="navbar">
+      <li class="navbar__item">Home</li>
+      <li class="navbar__item">About</li>
+      <li class="navbar__item">Contact</li>
+    </ul>
+  </nav>
 
- <aside id="userSelection">
-     <div id="genres">
-  <h1 id="genresHeading">Genres</h1>
-
-    <p>Please select your Genre:</p>
-      <input type="radio" class="radio" id="rap" name="genre" value="Hip-Hop/Rap">
-      <label for="html">Hip-Hop/Rap</label><br>
-      <input type="radio" id="rock" class="radio" name="genre" value="Rock">
-      <label for="css">Rock</label><br>
-      <input type="radio" class="radio" id="edm" name="genre" value="EDM">
-      <label for="javascript">EDM</label><br>
-      <input type="radio" class="radio" id="jazz" name="genre" value="Jazz">
-      <label for="css">Jazz</label><br>
-      <input type="radio" id="classical" class="radio" name="genre" value="Classical">
-      <label for="javascript">Classical</label><br>
-      <input type="radio" id="pop" name="genre" class="radio" value="Pop">
-      <label for="javascript">Pop</label><br>
-    <input type="radio" id="r&b" name="genre" class="radio" value="R&B">
-      <label for="javascript">R&B</label><br>
-    <input type="radio" id="country" name="genre" class="radio" value="Country">
-      <label for="javascript">Country</label><br>
+  <aside id="userSelection">
+    <div id="genres">
+        <h1 id="genresHeading"></h1>
+        <p>Please select your Genre:</p>
+        <input type="radio" class="radio" id="rap" name="genre" value="Hip-Hop/Rap">
+        <label for="html">Hip-Hop/Rap</label><br>
+        <input type="radio" id="rock" class="radio" name="genre" value="Rock">
+        <label for="css">Rock</label><br>
+        <input type="radio" class="radio" id="edm" name="genre" value="Electronic">
+        <label for="javascript">EDM</label><br>
+        <input type="radio" class="radio" id="jazz" name="genre" value="Jazz">
+        <label for="css">Jazz</label><br>
+        <input type="radio" id="classical" class="radio" name="genre" value="Classical">
+        <label for="javascript">Classical</label><br>
+        <input type="radio" id="pop" name="genre" class="radio" value="Pop">
+        <label for="javascript">Pop</label><br>
+        <input type="radio" id="r&b" name="genre" class="radio" value="R&B">
+    <label for="javascript">R&B</label><br>
+  <input type="radio" id="country" name="genre" class="radio" value="Country">
+    <label for="javascript">Country</label><br>
 </div>
 <div id="location">
-    <p>What City Is Your Event?</p>
-    <input type="text" id="city"> <br>
-    <br>
-    <button id="submitBtn" value="Submit">Search</button>
+  <p>What City Is Your Event?</p>
+  <input type="text" id="city"> <br>
+  <br>
+  <button id="submitBtn" value="Submit">Search</button>
 </div>
 </aside>
-
-
-
-<section id="searchResults">
-    <h1>Search Results</h1>
-<div id="results">
-</div>
+  
+<div id="content">
+<section id="featureResults">
+    <h1>Trending Concerts In Your City</h1>
+    <div id="results">
+    </div>
 </section>
+
+<div id="googlemap"></div>
+
 <section id="trending">
     <h1> Trending Events</h1>
     <aside id="event1"></aside>
@@ -58,7 +67,8 @@
     <aside id="event3"></aside>
 
 </section>
-
+</div>
+<div id="searchReults"></div>
 
 
     </main>
