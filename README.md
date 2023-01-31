@@ -14,6 +14,9 @@ if you are confident then use a different branch for every new feature
 1 look up `git status`
 2 add files `git add .`
 3 make commit `git commit -m "some message"`
+4 push to git `git push origin branch`
+5 see branch `git branch`
+6 see all branches `git branch -a`
 
 ## Project Linkes
 ** aways get the latest main branch and merge to your feature or personal branch before starting work
