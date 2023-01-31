@@ -131,5 +131,8 @@ document.querySelector("#trending").style.display = "none";
 
 }
 window.addEventListener("load", loadPage)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> main
