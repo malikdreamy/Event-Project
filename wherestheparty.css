@@ -4,9 +4,7 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
-main
-
-#h1Title {
+main #h1Title {
   text-align: center;
 }
 
@@ -158,41 +156,55 @@ nav {
 }
 
 .flex-row {
-    display: flex;
-    flex-direction: row;
-  }
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .justify-content-start {
-    justify-content: start;
-  }
-  .justify-content-end {
-    justify-content: end;
-  }
-  .justify-content-space-between {
-    justify-content: space-between;
-  }
-  .justify-content-center {
-    justify-content: center;
-  }
-  
-  
-  /* gaps */
-  .gap-1 {
-      gap: calc(1* 0.4rem);
-  }
-  .gap-2 {
-      gap: calc(2* 0.4rem);
-  }
-  .gap-3 {
-      gap: calc(3* 0.4rem);
-  }
-  .gap-4 {
-      gap: calc(4* 0.4rem);
-  }
-  .gap-5 {
-      gap: calc(5* 0.4rem);
-  }
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-content-start {
+  justify-content: start;
+}
+.justify-content-end {
+  justify-content: end;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+/* gaps */
+.gap-1 {
+  gap: calc(1 * 0.4rem);
+}
+.gap-2 {
+  gap: calc(2 * 0.4rem);
+}
+.gap-3 {
+  gap: calc(3 * 0.4rem);
+}
+.gap-4 {
+  gap: 0.7em;
+}
+.gap-5 {
+  gap: calc(5 * 0.4rem);
+}
+
+/*|| padding */
+
+.padding-0 {
+  padding: calc(0 * 0.04rem);
+}
+.padding-1 {
+  padding: calc(1 * 0.04rem);
+}
+.padding-2 {
+  padding: calc(2 * 0.04rem);
+}
+.padding-3 {
+  padding: calc(3 * 0.04rem);
+}
