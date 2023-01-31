@@ -25,6 +25,14 @@ const makeCardHtml = (data) => {
 };
 
 /**
+ * jsdoc comments
+ * @param {number} a 
+ * @param {number} b 
+ * @return {boolean}
+ */
+const addTwoNumber = (a, b) => a + b
+
+/**
  *
  * @param {*} event
  * @returns {boolean}
@@ -57,6 +65,7 @@ const fetchEventsAndDisplay = (selectedGenre = document.querySelector('input[nam
     return;
   }
 
+
   let ticketMasterUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=${selectedGenre}&preferredCountry=us&genreName=${selectedGenre}k&preferredCountry=us&city=${city.value}&size=60`;
 
   //fetch events using inputes
@@ -72,7 +81,7 @@ const fetchEventsAndDisplay = (selectedGenre = document.querySelector('input[nam
       //f(x)->y === makeCardHtml(eventInformation)-> eventCardHtmlString
       // [e1,e2,e3] => makeCardHtml() ==> [e1html,e2html,e3html] => e1html contents + ... + eNhtml contents
       const cardsHtml = dataEventsArray
-        .filter(hasPriceRangesField) //remove items without price rances
+        .filter(hasPriceRangesField) //remove items without price ranges
         .map((data) => makeCardHtml(data)) //convert events to htmlcard
         .join(""); //join events to one big string
 
@@ -99,7 +108,10 @@ const getCurrentCity = (url = `https://get.geojs.io/v1/ip/geo.json`) => {
  * @returns city from local storage last search or from geojs
  */
 const getLastSearchedFromLocalStorageOrCurrentCity = async () => {
-  return localStorage.getItem("lastSearchedCity") ?? (await getCurrentCity().then((responseObj) => responseObj.city));
+
+  return localStorage.getItem("lastSearchedCity") ? localStorage.getItem("lastSearchedCity") : (await getCurrentCity().then((responseObj) => responseObj.city));
+
+  // return localStorage.getItem("lastSearchedCity") ?? (await getCurrentCity().then((responseObj) => responseObj.city));
 };
 
 /**
@@ -109,7 +121,7 @@ const loadPage = async () => {
   // FETCH FOR USER IP ADDRESS AND GEOLOCATION
 
   const city = await getLastSearchedFromLocalStorageOrCurrentCity();
-  document.getElementById("city").value = city; // tells you what city you are in.
+  document.getElementById("city").value = city; // tells you what city you are in. assign to input element as value
   fetchEventsAndDisplay("music", { value: city });
 
   document.querySelector("#trending").style.display = "none";
