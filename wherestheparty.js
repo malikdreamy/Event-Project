@@ -26,15 +26,6 @@ const makeCardHtml = (data) => {
 </div>`;
 };
 
-
-/**
- * jsdoc comments
- * @param {number} a 
- * @param {number} b 
- * @return {boolean}
- */
-const addTwoNumber = (a, b) => a + b
-
 /**
  *
  * @param {*} event
