@@ -27,4 +27,5 @@ if you are confident then use a different branch for every new feature
 ** aways get the latest main branch and merge to your feature or personal branch before starting work
 GitHub URL: https://malikdreamy.github.io/Event-Project/
 
-ScreenShot: [image](https://user-images.githubusercontent.com/119153047/215916302-f31d71db-0422-48fc-b806-8591b96959b7.png)
+ScreenShot: <img width="1319" alt="Screen Shot 2023-01-31 at 6 44 51 PM" src="https://user-images.githubusercontent.com/119153047/215932634-d681855a-8a67-4784-8384-edd197f91f3f.png">
+
