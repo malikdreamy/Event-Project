@@ -11,20 +11,21 @@ const makeCardHtml = (data) => {
   <div class="card sticky-action left-align grey darekn-2">
   <div class="card-image">
     <img src=${data.images[1].url}>
-    <p id="concert-name">${data.name}</p>
-  </div>
-  <div class="card-stacked">
+    </div>
+    <div class="card-stacked">
     <div class="card-content">
-      <p style="color:black">${data._embedded.venues[0].address.line1}.</p>
-       <p id="data-url"><a href="${data.url}">${data.url}</a></p>
+    <p style="color:black">${data.name}.</p>
+    <p style="color:black">${data._embedded.venues[0].address.line1}.</p>
+    <p id="data-url"><a href="${data.url}">${data.url}</a></p>
       <div class=" row" style="padding-top: 25px">
       <a href="#" class="col m6 no-padding" style="color:black">$${data.priceRanges[0].min}-$${data.priceRanges[0].max}</a>
-      <a href="#" class="col m6 no-padding" style="color:white">${data.dates.start.localDate}</a>
+      <a href="#" class="col m6 no-padding" style="color:black">${data.dates.start.localDate}</a>
       </div>
     </div>
   </div>
 </div>`;
 };
+
 
 /**
  * jsdoc comments
