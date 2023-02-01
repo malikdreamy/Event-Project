@@ -1,10 +1,12 @@
-Wheres The Party? App Wheres the Party? Is an app that that finds local concerts in your area. 
+Wheres The Party? App Wheres the Party? Is an app that that finds local concerts in your area by city name and genre. 
 When you first pull up the page it automatically shows trending concerts in your area by getting your IP Address 
 and finding concerts near you.
-You can also search any city by typing in the city and selecting one of the genres by radio buttons at the top of the screen. 
+You can also search any American city by typing in the city name and selecting one of the genres by radio buttons at the top of the screen. 
 When you press search it will show you all of the concerts in that city by genre. 
-It also displays the date and time the concert will occur, it shows the ticket prices and the address of the venue.
-Where's The Party Utilizes two API's which are the ticketmaster API and GEO.js to fetch the users current city.
+It also displays the date and time the concert will occur, it shows the ticket prices, a URL to buy the ticket and the address of the venue.
+Where's The Party utlizies localstorage by saving the users search result on refresh.
+We also utlized materialize for styling the app.
+Where's The Party Utilizes two API's which are the ticketmaster API and GEO.js to fetch the users current city. 
 
 
 
