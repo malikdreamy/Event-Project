@@ -138,3 +138,7 @@ submitButton.addEventListener("click", fetchData);
 window.addEventListener("load", currentState);
 window.addEventListener("load", loadPage);
 
+
+
+
+
