@@ -8,7 +8,6 @@ It also displays the date and time the concert will occur, it shows the ticket p
 
 
 ## Project Links
-** aways get the latest main branch and merge to your feature or personal branch before starting work
 GitHub URL: https://malikdreamy.github.io/Wheres-The-Party/
 
 
