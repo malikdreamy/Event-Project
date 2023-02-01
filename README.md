@@ -17,10 +17,10 @@ if you are confident then use a different branch for every new feature
 4 push to git `git push origin branch`
 5 see branch `git branch`
 6 see all branches `git branch -a`
-switch `git switch branch-name`
-pull latest code `git pull origin branch-name`
-stash changes `git stash`
-pop stash `git pop`
+7 switch `git switch branch-name`
+8 pull latest code `git pull origin branch-name`
+9 stash changes `git stash`
+10 pop stash `git pop`
 
 
 ## Project Linkes
