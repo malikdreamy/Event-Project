@@ -10,22 +10,10 @@ Each project member should make a new branch to work on stuff and then then send
 ideally stick to one branch per project member
 if you are confident then use a different branch for every new feature
 
-## Common git commands
-1 look up `git status`
-2 add files `git add .`
-3 make commit `git commit -m "some message"`
-4 push to git `git push origin branch`
-5 see branch `git branch`
-6 see all branches `git branch -a`
-7 switch `git switch branch-name`
-8 pull latest code `git pull origin branch-name`
-9 stash changes `git stash`
-10 pop stash `git pop`
-
-
 ## Project Linkes
 ** aways get the latest main branch and merge to your feature or personal branch before starting work
-GitHub URL: https://malikdreamy.github.io/Event-Project/
+GitHub URL: https://malikdreamy.github.io/Wheres-The-Party/
+
 
 ScreenShot: <img width="1319" alt="Screen Shot 2023-01-31 at 6 44 51 PM" src="https://user-images.githubusercontent.com/119153047/215932634-d681855a-8a67-4784-8384-edd197f91f3f.png">
 
