@@ -1,140 +1,126 @@
+/**
+ *
+ * @param {*} data
+ * @returns
+ * @description
+ * @algorithm
+ *
+ */ // takes data and creates html  card with image, price, and date. and returns string.
+const makeCardHtml = (data) => {
+  return `
+  <div class="card sticky-action left-align grey darekn-2">
+  <div class="card-image">
+    <img src=${data.images[1].url}>
+  </div>
+  <div class="card-stacked">
+    <div class="card-content">
+      <p style="color:black">${data._embedded.venues[0].address.line1}.</p>
+      <div class=" row" style="padding-top: 25px">
+      <a href="#" class="col m6 no-padding" style="color:black">$${data.priceRanges[0].min}-$${data.priceRanges[0].max}</a>
+      <a href="#" class="col m6 no-padding" style="color:white">${data.dates.start.localDate}</a>
+      </div>
+    </div>
+  </div>
+</div>`;
+};
 
-const currentState = () => {
-  if(localStorage.getItem("currentState")){
-let state = localStorage.getItem("currentState");
-let parser = new DOMParser();
-let doc = parser.parseFromString(state, 'text/html'); 
-let bodyOri = document.getElementsByTagName('html')[0];
-bodyOri.replaceWith(doc.firstChild);
-  const fetchData = () => {
-    // FETCH FOR USER SEARCH
-  document.querySelector("#trending").style.display = "none";
-    let button = document.getElementById('submitBtn');
-    let radioButtons = document.getElementsByName('input');
-      let userMessage = "";
-      let city = document.querySelector("#city");
-      if (city.value == "") {
-        userMessage = ` Please Enter Your City!`
-        document.getElementById("userSelection").append(userMessage)
-      } else {
-        let selectedGenre = document.querySelector('input[name="genre"]:checked').value;
-        let ticketMasterUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=${selectedGenre}&preferredCountry=us&genreName=${selectedGenre}k&preferredCountry=us&city=${city.value}&size=60`
-        fetch(ticketMasterUrl).then((data) => {
-          return data.json();
-        }).then((completedata) => {
-          console.log(completedata);
-          let txt = "";
-          let dataEvents = completedata._embedded.events
-          dataEvents.forEach((data) => {
-            if (data.hasOwnProperty("priceRanges")){
-            txt += ` <div class="concert-card">
-            <h1 class="title">${data.name}</h1>
-            <img src=${data.images[1].url} alt="img" class="trendingImages">
-            <div class="concert-info">
-            <p class="concert-date">${data.dates.start.localDate}</p>
-            <p class="concert-address">${data._embedded.venues[0].address.line1}</p>
-            <p class="price">${"Price Ranges: " + "$" + data.priceRanges[0].min + " - " + "$" + data.priceRanges[0].max}</p>
-            </div>
-            </div>`;
-            }
-            document.getElementById("results").innerHTML = txt;
-            let string = document.getElementsByTagName("html")[0].outerHTML;
-            localStorage.setItem("currentState", string);
-          });
-        })
-    }
+/**
+ *
+ * @param {*} event
+ * @returns {boolean}
+ * @description
+ */ // if event has price ranges it will return true. otherwise if event has no price range boolean returns false.
+const hasPriceRangesField = (event) => {
+  return Boolean(event?.priceRanges?.length);
+};
+
+/**
+ *
+ * @param {*} selectedGenre
+ * @param {*} city
+ * @returns void
+ * @description
+ * @algorithm
+ * start
+ * get inputs genre,city
+ * fetch events using inputes
+ * then get event lists
+ * then remove events without price
+ * then covert each event to card html
+ * then join all card html to one string
+ * add the string to the result element on the page
+ * end
+ */ // if there is no genre or city selected, return nothing.
+const fetchEventsAndDisplay = (selectedGenre = document.querySelector('input[name="genre"]:checked').value, city = document.querySelector("#city")) => {
+  // early return
+  if (!selectedGenre || !city?.value) {
+    return;
   }
-  let submitButton = document.getElementById("submitBtn");
-  submitButton.addEventListener("click", fetchData);
-  }};
-const loadPage = () => {
-  if(!localStorage.getItem("currentState")){
-  // FETCH FOR USER IP ADDRESS AND GEOLOCATION
-  let url = `https://get.geojs.io/v1/ip/geo.json`
-  fetch(url).then((data) => {
-    return data.json();
-  }).then((completedata) => {
-    let txt = "";
-    console.log(completedata.city);
-    cityName = completedata.city;
-    txt = ``
-document.getElementById("googlemap").innerHTML = txt;
-let localEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=music&size=39&city=${cityName}`
-  fetch(localEventUrl).then((data) => {
-    return data.json();
-  }).then((completedata) => {
-    console.log(completedata);
-    let txt = "";
-    let dataEvents = completedata._embedded.events
-    dataEvents.forEach((data) => {
-     if (data.hasOwnProperty("priceRanges")){
-      txt += ` <div class="concert-card">
-        <h1 class="title">${data.name}</h1>
-        <img src=${data.images[1].url} alt="img" class="trendingImages">
-        <div class="concert-info">
-        <p class="concert-date">${"Date: " + data.dates.start.localDate}</p>
-        <p class="concert-address">${"Address :" + data._embedded.venues[0].address.line1}</p>
-        <p class="price">${"Price Ranges: " + "$" + data.priceRanges[0].min + " - " + "$" + data.priceRanges[0].max}</p>
-        </div>
-        </div>`;
-     }
-      let concertCard = document.querySelectorAll(".concert-card");
-      document.getElementById("results").innerHTML = txt;
+
+  let ticketMasterUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=${selectedGenre}&preferredCountry=us&genreName=${selectedGenre}k&preferredCountry=us&city=${city.value}&size=60`;
+
+  //fetch events using inputes
+  fetch(ticketMasterUrl)
+    .then((data) => data.json())
+    .then((completedata) => {
+      console.log(completedata);
+
+      // then get event lists
+      const /** @type {Array} */ dataEventsArray = completedata._embedded.events; //creates an Array out of data.
+
+      // then join all card html to one string
+      //f(x)->y === makeCardHtml(eventInformation)-> eventCardHtmlString
+      // [e1,e2,e3] => makeCardHtml() ==> [e1html,e2html,e3html] => e1html contents + ... + eNhtml contents
+      const cardsHtml = dataEventsArray
+        .filter(hasPriceRangesField) //remove items without price rances
+        .map((data) => makeCardHtml(data)) //convert events to htmlcard
+        .join(""); //join events to one big string
+
+      //add all the cards to the page
+      document.getElementById("results").innerHTML = cardsHtml;
+    })
+    .catch((err) => {
+      console.log(err);
+      document.getElementById("results").innerHTML = "Error: failed to fetch events";
+    })
+    .finally(() => {
+      localStorage.setItem("lastSearchedCity", city?.value ?? null);
     });
-  })
+};
+
+const getCurrentCity = (url = `https://get.geojs.io/v1/ip/geo.json`) => {
+  return fetch(url).then((data) => {
+    return data.json();
   });
-  }
-}
+};
 
- const fetchData = () => {
+/**
+ *
+ * @returns city from local storage last search or from geojs
+ */
+const getLastSearchedFromLocalStorageOrCurrentCity = async () => {
+  return localStorage.getItem("lastSearchedCity") ?? (await getCurrentCity().then((responseObj) => responseObj.city));
+};
+
+/**
+ *
+ */
+const loadPage = async () => {
+  // FETCH FOR USER IP ADDRESS AND GEOLOCATION
+
+  const city = await getLastSearchedFromLocalStorageOrCurrentCity();
+  document.getElementById("city").value = city; // tells you what city you are in.
+  fetchEventsAndDisplay("music", { value: city });
+
+  document.querySelector("#trending").style.display = "none";
+
+  let userSelectionForm = document.getElementById("userSelection");
+  userSelectionForm.addEventListener("submit", (event) => {
+    event.preventDefault(); //prevents page from reloading
+    fetchEventsAndDisplay(); // loads cards to results page
+  });
+
   // FETCH FOR USER SEARCH
-document.querySelector("#trending").style.display = "none";
-  let button = document.getElementById('submitBtn');
-  let radioButtons = document.getElementsByName('input');
-    let userMessage = "";
-    let city = document.querySelector("#city");
-    if (city.value == "") {
-      userMessage = `<div id="user-message">
-      <p>Please Enter A City Name!</p>
-      <button id="close-button">X</button>
-    </div>`
-      document.getElementById("errorMessage").innerHTML = userMessage;
-      const closeButton = document.getElementById("close-button");
-      closeButton.addEventListener("click", () => {
-        const userMessage = document.getElementById("user-message");
-        userMessage.style.display = "none";
-      });
+};
 
-    } else {
-      let selectedGenre = document.querySelector('input[name="genre"]:checked').value;
-      let ticketMasterUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=1coN1aL4iKW9A3ex76AtrnJa4sBOaFua&locale=*&classificationName=${selectedGenre}&preferredCountry=us&genreName=${selectedGenre}k&preferredCountry=us&city=${city.value}&size=60`
-      fetch(ticketMasterUrl).then((data) => {
-        return data.json();
-      }).then((completedata) => {
-        console.log(completedata);
-        let txt = "";
-        let dataEvents = completedata._embedded.events
-        dataEvents.forEach((data) => {
-          if (data.hasOwnProperty("priceRanges")){
-          txt += ` <div class="concert-card">
-          <h1 class="title">${data.name}</h1>
-          <img src=${data.images[1].url} alt="img" class="trendingImages">
-          <div class="concert-info">
-          <p class="concert-date">${data.dates.start.localDate}</p>
-          <p class="concert-address">${data._embedded.venues[0].address.line1}</p>
-          <p class="price">${"Price Ranges: " + "$" + data.priceRanges[0].min + " - " + "$" + data.priceRanges[0].max}</p>
-          </div>
-          </div>`;
-          }
-          document.getElementById("results").innerHTML = txt;
-          let string = document.getElementsByTagName("html")[0].outerHTML;
-          localStorage.setItem("currentState", string);
-        });
-      })
-  }
-}
-let submitButton = document.getElementById("submitBtn");
-submitButton.addEventListener("click", fetchData);
-window.addEventListener("load", currentState);
 window.addEventListener("load", loadPage);
-
