@@ -81,7 +81,7 @@ const fetchEventsAndDisplay = (selectedGenre = document.querySelector('input[nam
     })
     .catch((err) => {
       console.log(err);
-      document.getElementById("results").innerHTML = "Error: failed to fetch events";
+      document.getElementById("results").innerHTML = "Error: failed to fetch events | 0 events found";
     })
     .finally(() => {
       localStorage.setItem("lastSearchedCity", city?.value ?? null);
