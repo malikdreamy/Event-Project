@@ -1,4 +1,4 @@
-Wheres the Party? Is an app that that finds local concerts in your area by city name and genre. 
+Wheres the Party? Is an app that finds local concerts in your area by city name and genre. 
 When you first pull up the page it automatically shows trending concerts in your area by getting your IP Address 
 and finding concerts near you.
 You can also search any American city by typing in the city name and selecting one of the genres by radio buttons at the top of the screen. 
