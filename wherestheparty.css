@@ -225,3 +225,8 @@ nav {
 .padding-5 {
   padding: calc(5 * 0.4rem);
 }
+
+#concert-name{
+margin: 10px 10px 10px 10px;
+}
+
