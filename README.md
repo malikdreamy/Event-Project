@@ -5,6 +5,12 @@ You can also search any city by typing in the city and selecting one of the genr
 When you press search it will show you all of the concerts in that city by genre. 
 It also displays the date and time the concert will occur, it shows the ticket prices and the address of the venue.
 
+## Working with Git
+Each project member should make a new branch to work on stuff and then then send a pull request to merge with main
+ideally stick to one branch per project member
+if you are confident then use a different branch for every new feature
+
+** aways get the latest main branch and merge to your feature or personal branch before starting work
 GitHub URL: https://malikdreamy.github.io/Event-Project/
 
 ScreenShot: [image](https://user-images.githubusercontent.com/119153047/215916302-f31d71db-0422-48fc-b806-8591b96959b7.png)
