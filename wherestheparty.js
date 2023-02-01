@@ -11,6 +11,7 @@ const makeCardHtml = (data) => {
   <div class="card sticky-action left-align grey darekn-2">
   <div class="card-image">
     <img src=${data.images[1].url}>
+    <p id="concert-name">${data.name}</p>
   </div>
   <div class="card-stacked">
     <div class="card-content">
