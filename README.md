@@ -4,6 +4,7 @@ and finding concerts near you.
 You can also search any city by typing in the city and selecting one of the genres by radio buttons at the top of the screen. 
 When you press search it will show you all of the concerts in that city by genre. 
 It also displays the date and time the concert will occur, it shows the ticket prices and the address of the venue.
+Where's The Party Utilizes two API's which are the ticketmaster API and GEO.js to fetch the users current city.
 
 
 
