@@ -6,4 +6,5 @@ When you press search it will show you all of the concerts in that city by genre
 It also displays the date and time the concert will occur, it shows the ticket prices and the address of the venue.
 
 GitHub URL: https://malikdreamy.github.io/Event-Project/
+
 ScreenShot: [image](https://user-images.githubusercontent.com/119153047/215916302-f31d71db-0422-48fc-b806-8591b96959b7.png)
